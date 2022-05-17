@@ -49,7 +49,7 @@
     (n.o = function (e, t) {
       return Object.prototype.hasOwnProperty.call(e, t);
     }),
-    (n.p = '/'),
+    (n.p = '/y-blog/'),
     n((n.s = 0));
 })({
   '++zV': function (e, t, n) {
@@ -2574,7 +2574,7 @@
                 ],
                 title: 'Getting Started',
               },
-              title: 'Getting Started - Site Name',
+              title: 'Getting Started - yen blog',
             },
             {
               path: '/zh-CN/getting-started',
@@ -2598,7 +2598,7 @@
                 title: '\u5feb\u901f\u4e0a\u624b',
                 locale: 'zh-CN',
               },
-              title: '\u5feb\u901f\u4e0a\u624b - Site Name',
+              title: '\u5feb\u901f\u4e0a\u624b - yen blog',
             },
             {
               path: '/help',
@@ -2611,7 +2611,7 @@
                 nav: { path: '/help', title: 'Help' },
                 title: 'Help',
               },
-              title: 'Help - Site Name',
+              title: 'Help - yen blog',
             },
             {
               path: '/zh-CN/help',
@@ -2627,7 +2627,7 @@
                 title: '\u5e2e\u52a9',
                 locale: 'zh-CN',
               },
-              title: '\u5e2e\u52a9 - Site Name',
+              title: '\u5e2e\u52a9 - yen blog',
             },
             {
               path: '/',
@@ -2635,7 +2635,7 @@
               exact: !0,
               meta: {
                 filePath: 'docs/index.md',
-                updatedTime: 1652774652e3,
+                updatedTime: 1652779557e3,
                 hero: {
                   title: 'Site Name',
                   desc: '<div class="markdown"><p>dumi site app example</p></div>',
@@ -2663,11 +2663,15 @@
                 footer:
                   '<div class="markdown"><p>Open-source MIT Licensed | Copyright \xa9 2020<br />Powered by <a href="https://d.umijs.org/" target="_blank">dumi<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="__dumi-default-external-link-icon"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path><polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></p></div>',
                 slugs: [
-                  { depth: 2, value: 'Hello dumi!', heading: 'hello-dumi' },
+                  {
+                    depth: 2,
+                    value: 'Hello dumi!111111111111',
+                    heading: 'hello-dumi111111111111',
+                  },
                 ],
-                title: 'Hello dumi!',
+                title: 'Hello dumi!111111111111',
               },
-              title: 'Hello dumi! - Site Name',
+              title: 'Hello dumi!111111111111 - yen blog',
             },
             {
               path: '/zh-CN',
@@ -2711,10 +2715,10 @@
                 title: 'Hello dumi!',
                 locale: 'zh-CN',
               },
-              title: 'Hello dumi! - Site Name',
+              title: 'Hello dumi! - yen blog',
             },
           ],
-          title: 'Site Name',
+          title: 'yen blog',
           component: (e) => e.children,
         },
       ];
@@ -2743,7 +2747,7 @@
                 history: Object(o['a'])(e.hot),
                 isServer: Object({ NODE_ENV: 'production' }).__IS_SERVER,
                 rootElement: 'root',
-                defaultTitle: 'Site Name',
+                defaultTitle: 'yen blog',
               },
             });
             return U(t);
@@ -6853,13 +6857,17 @@
             { className: 'markdown' },
             o.a.createElement(
               'h2',
-              { id: 'hello-dumi' },
+              { id: 'hello-dumi111111111111' },
               o.a.createElement(
                 i['AnchorLink'],
-                { to: '#hello-dumi', 'aria-hidden': 'true', tabIndex: -1 },
+                {
+                  to: '#hello-dumi111111111111',
+                  'aria-hidden': 'true',
+                  tabIndex: -1,
+                },
                 o.a.createElement('span', { className: 'icon icon-link' }),
               ),
-              'Hello dumi!',
+              'Hello dumi!111111111111',
             ),
           ),
         );
@@ -13859,7 +13867,7 @@
   },
   RGYn: function (e) {
     e.exports = JSON.parse(
-      '{"menus":{"en-US":{"/getting-started":[{"path":"/getting-started","title":"Getting Started","meta":{}}],"/help":[{"path":"/help","title":"Help","meta":{}}],"*":[{"path":"/","title":"Hello dumi!","meta":{}}]},"zh-CN":{"/zh-CN/getting-started":[{"path":"/zh-CN/getting-started","title":"\u5feb\u901f\u4e0a\u624b","meta":{}}],"/zh-CN/help":[{"path":"/zh-CN/help","title":"\u5e2e\u52a9","meta":{}}],"*":[{"path":"/zh-CN","title":"Hello dumi!","meta":{}}]}},"locales":[{"name":"en-US","label":"English"},{"name":"zh-CN","label":"\u4e2d\u6587"}],"navs":{"en-US":[{"title":"Getting Started","order":1,"path":"/getting-started"},{"path":"/help","title":"Help"}],"zh-CN":[{"title":"\u5feb\u901f\u4e0a\u624b","order":1,"path":"/zh-CN/getting-started"},{"title":"\u5e2e\u52a9","path":"/zh-CN/help"}]},"title":"Site Name","mode":"site","repository":{"url":"","branch":"master"},"theme":{}}',
+      '{"menus":{"en-US":{"/getting-started":[{"path":"/getting-started","title":"Getting Started","meta":{}}],"/help":[{"path":"/help","title":"Help","meta":{}}],"*":[{"path":"/","title":"Hello dumi!111111111111","meta":{}}]},"zh-CN":{"/zh-CN/getting-started":[{"path":"/zh-CN/getting-started","title":"\u5feb\u901f\u4e0a\u624b","meta":{}}],"/zh-CN/help":[{"path":"/zh-CN/help","title":"\u5e2e\u52a9","meta":{}}],"*":[{"path":"/zh-CN","title":"Hello dumi!","meta":{}}]}},"locales":[{"name":"en-US","label":"English"},{"name":"zh-CN","label":"\u4e2d\u6587"}],"navs":{"en-US":[{"title":"Getting Started","order":1,"path":"/getting-started"},{"path":"/help","title":"Help"}],"zh-CN":[{"title":"\u5feb\u901f\u4e0a\u624b","order":1,"path":"/zh-CN/getting-started"},{"title":"\u5e2e\u52a9","path":"/zh-CN/help"}]},"title":"yen blog","mode":"site","repository":{"url":"","branch":"master"},"theme":{},"exportStatic":{}}',
     );
   },
   RK3t: function (e, t, n) {
@@ -28162,7 +28170,7 @@
         return i;
       });
     var r = n('YS25'),
-      o = { basename: '/' };
+      o = { basename: '/y-blog/' };
     window.routerBase && (o.basename = window.routerBase);
     var i = Object({ NODE_ENV: 'production' }).__IS_SERVER
         ? null
