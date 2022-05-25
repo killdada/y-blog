@@ -6,7 +6,7 @@
 
 `yarn`
 
-`yarn start`
+`yarn start` or `yarn dev`
 
 基于 vscode，借助 [markdown-image 插件](https://github.com/imlinhanchao/vsc-markdown-image/blob/HEAD/README.zh-cn.md) 插件，复制粘贴图片到 md 文件自动上传到 [七牛云](https://portal.qiniu.com/home)
 
@@ -24,7 +24,7 @@
 
 文档部署参考 [GitHub Pages](https://d.umijs.org/zh-CN/guide/faq#%E9%83%A8%E7%BD%B2%E5%88%B0github-pages)
 
-`yarn deploy` 接口把文档更新到 github
+`yarn deploy` 把文档更新到 github pages
 
 ### 2：github 网络问题
 
@@ -32,17 +32,23 @@
 
 [netlify 参考文档](https://juejin.cn/post/6844904100329422861)
 
+代码提交到 master 分支自动触发远程的 netlify cli 命令，命令里面会执行 `yarn build:netlify` 的构建
+
 ### 3：直接把整个发布后的目录上传到七牛云
+
+`yarn build:qn`
 
 基于 [qiniu-webpack-plugin](https://github.com/zzetao/qiniu-webpack-plugin)
 
-因为内部源码可能是当前 webpack 版本不一致，导致验证失败，因此基于 [patch-package](https://www.npmjs.com/package/patch-package)
+因为内部源码可能是当前 webpack 版本不一致，导致验证失败，因此基于 [patch-package](https://www.npmjs.com/package/patch-package) 打个补丁
 
 **目前发布配置开启了 umi exportStatic 上传到 七牛云 cdn 的文件大多数都是 html，导致 cdn 缓存特别严重，即使用户开启了禁用浏览器缓存也会命中缓存，可以在 cdn 控制台手动进行刷新**
 
 [七牛云 cdn 刷新](https://portal.qiniu.com/cdn/refresh-prefetch)
 
 > 七牛云注意防盗链、还有告警配置等。具体参考官方说明文档
+
+> 同时需要发布 githubpages、七牛云 `yarn deploy:qt`
 
 # 参考
 
