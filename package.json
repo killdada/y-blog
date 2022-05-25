@@ -3,10 +3,14 @@
   "name": "dumi-app",
   "scripts": {
     "start": "dumi dev",
+    "dev": "dumi dev",
     "build": "cross-env GITHUB=1 dumi build",
     "build:netlify": "dumi build",
+    "build:qn": "cross-env USEQN=1 dumi build",
     "deploy": "yarn build && gh-pages -d dist",
-    "prettier": "prettier --write \"**/*.{js,jsx,tsx,ts,less,md,json}\""
+    "deploy:qt": "yarn deploy && build:qn",
+    "prettier": "prettier --write \"**/*.{js,jsx,tsx,ts,less,md,json}\"",
+    "postinstall":"patch-package"
   },
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
@@ -23,10 +27,12 @@
     ]
   },
   "devDependencies": {
+    "better-qiniu-webpack-plugin": "0.0.6",
     "cross-env": "^7.0.3",
     "dumi": "^1.0.13",
     "gh-pages": "^4.0.0",
     "lint-staged": "^10.0.7",
+    "patch-package": "^6.4.7",
     "prettier": "^2.2.1",
     "yorkie": "^2.0.0"
   }

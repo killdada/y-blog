@@ -17,3 +17,7 @@
 # ide
 /.vscode
 /.idea
+
+# 静态构建文件不上传
+dist
+y-blog

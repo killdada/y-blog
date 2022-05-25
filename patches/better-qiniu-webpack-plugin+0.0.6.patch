@@ -1,0 +1,169 @@
+diff --git a/node_modules/better-qiniu-webpack-plugin/src/index.js b/node_modules/better-qiniu-webpack-plugin/src/index.js
+index 44e5e1b..f126816 100644
+--- a/node_modules/better-qiniu-webpack-plugin/src/index.js
++++ b/node_modules/better-qiniu-webpack-plugin/src/index.js
+@@ -24,6 +24,7 @@ const PLUGIN_NAME = 'QiniuWebpackPlugin';
+  *    usePublicPath: boolean,
+  *    batch: number,
+  *    deltaUpdate: boolean,
++ *    cover: boolean,
+  * }
+  */
+ class QiniuPlugin {
+@@ -32,7 +33,8 @@ class QiniuPlugin {
+       uploadPath: 'webpack_assets', // default uploadPath
+       batch: 10,
+       deltaUpdate: true,
+-      usePublicPath: true
++      usePublicPath: true,
++      cover: false
+     };
+     const fileOptions = this.getFileOptions();
+     this.options = Object.assign(defaultOptions, options, fileOptions);
+@@ -95,6 +97,9 @@ class QiniuPlugin {
+         },
+         deltaUpdate: {
+           type: 'boolean'
++        },
++        cover: {
++          type: 'boolean'
+         }
+       }
+     });
+@@ -130,68 +135,86 @@ class QiniuPlugin {
+       // 处理文件过滤
+       const releaseFiles = this.matchFiles(fileNames);
+ 
+-      reporter.text = '📦   正在获取历史数据';
+-      
+-      // 获取文件日志
+-      const {
+-        uploadTime,
+-        prev: prevFiles = [],
+-        current: currentFiles = []
+-      } = await this.getLogFile();
+-      reporter.log = '📦   获取历史数据';
+-      
+-      // 合并去重，提取最终要上传和删除的文件
+-      const { uploadFiles, deleteFiles } = combineFiles(prevFiles, currentFiles, releaseFiles);
++      let uploadFiles = releaseFiles || [];
++      // 下面二个变量非覆盖删除的时候需要用
++      let deleteFiles = [];
++      let currentFiles = [];
++
++      // 非覆盖上传，之前的默认代码，获取历史数据对比文件获取最终需要上传和删除的文件（覆盖上传不需要这些，全部都把releaseFiles上传上去即可）
++      if (!this.options.cover) {
++         reporter.text = '📦   正在获取历史数据';
++
++        // 获取文件日志
++        const {
++          uploadTime,
++          prev: prevFiles = [],
++          current: currentFilesData = []
++        } = await this.getLogFile();
++        reporter.log = '📦   获取历史数据';
++
++        // 合并去重，提取最终要上传和删除的文件
++        const { uploadFiles: uploadFilesData, deleteFiles: deleteFilesData } = combineFiles(prevFiles, currentFilesData, releaseFiles);
++
++        uploadFiles = uploadFilesData;
++        deleteFiles = deleteFilesData;
++        currentFiles = currentFilesData
++      }
+ 
+-      reporter.log = `🍔   将上传 ${uploadFiles.length} 个文件`;
++      if (uploadFiles.length) {
++        reporter.log = `🍔   将上传 ${uploadFiles.length} 个文件`;
+ 
+-      const uploadFileTasks = uploadFiles.map((filename, index) => {
+-        const file = compilation.assets[filename];
++        const uploadFileTasks = uploadFiles.map((filename, index) => {
++          const file = compilation.assets[filename];
+ 
+-        return async () => {
+-          const key = path.posix.join(this.options.uploadPath, filename);
++          return async () => {
++            const key = path.posix.join(this.options.uploadPath, filename);
+ 
+-          reporter.text = `🚀  正在上传第 ${index + 1} 个文件: ${key}`;
++            reporter.text = `🚀  正在上传第 ${index + 1} 个文件: ${key}`;
+ 
+-          return await this.qiniu.putFile(key, file.existsAt);
+-        }
+-      });
+-      
+-      try {
+-        await mapLimit(uploadFileTasks, this.options.batch,
+-          (task, next) => {
+-            (async () => {
+-              try {
+-                const res = await task();
+-                next(null, res);
+-              } catch(err) {
+-                next(err);
+-              }
+-            })();
++            return await this.qiniu.putFile(key, file.existsAt || path.join(this.options.uploadPath, filename));
+           }
+-        );
+-      } catch(e) {
+-        console.error(chalk.bold.red('\n\n上传失败:'));
+-        callback(e);
+-      }
++        });
++
++        try {
++          await mapLimit(uploadFileTasks, this.options.batch,
++            (task, next) => {
++              (async () => {
++                try {
++                  const res = await task();
++                  next(null, res);
++                } catch(err) {
++                  next(err);
++                }
++              })();
++            }
++          );
++        } catch(e) {
++          console.error(chalk.bold.red('\n\n上传失败:'));
++          callback(e);
++        }
+ 
+-      reporter.log = '❤️   上传完毕';
++        reporter.log = '❤️   上传完毕';
+ 
+-      // 当有文件要上传才去删除之前版本的文件，且写入日志
+-      if (uploadFiles.length > 0 && !this.options.deltaUpdate) {
++        // 非覆盖上传不需要写日志，也不需要删除文件
++        if (!this.options.cover) {
++          // 当有文件要上传才去删除之前版本的文件，且写入日志
++          if (uploadFiles.length > 0 && !this.options.deltaUpdate) {
+ 
+-        if (deleteFiles.length > 0) {
+-          reporter.log = `👋🏼   将删除 ${deleteFiles.length} 个文件`;
+-          reporter.text = `🤓   正在批量删除...`;
+-          await this.deleteOldFiles(deleteFiles);
+-          reporter.log = `💙   删除完毕`;  
++            if (deleteFiles.length > 0) {
++              reporter.log = `👋🏼   将删除 ${deleteFiles.length} 个文件`;
++              reporter.text = `🤓   正在批量删除...`;
++              await this.deleteOldFiles(deleteFiles);
++              reporter.log = `💙   删除完毕`;
++            }
++          }
++          reporter.text = `📝   正在写入日志...`;
++          await this.writeLogFile(currentFiles, releaseFiles);
++          reporter.log = `📝   日志记录完毕`
+         }
++      } else {
++        reporter.log = `🍔  没有文件需要上传，请检查！！！`;
+       }
+ 
+-      reporter.text = `📝   正在写入日志...`;
+-      await this.writeLogFile(currentFiles, releaseFiles);
+-      reporter.log = `📝   日志记录完毕`
+-
+       reporter.succeed('🎉 \n');
+       console.log(chalk.bold.green('==== Qiniu Webpack Plugin ==== \n'));
+ 
