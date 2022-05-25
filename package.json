@@ -8,7 +8,7 @@
     "build:netlify": "dumi build",
     "build:qn": "cross-env USEQN=1 dumi build",
     "deploy": "yarn build && gh-pages -d dist",
-    "deploy:qt": "yarn deploy && build:qn",
+    "deploy:qt": "yarn deploy && yarn build:qn",
     "prettier": "prettier --write \"**/*.{js,jsx,tsx,ts,less,md,json}\"",
     "postinstall":"patch-package"
   },
