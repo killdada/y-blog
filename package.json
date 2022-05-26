@@ -4,11 +4,10 @@
   "scripts": {
     "start": "dumi dev",
     "dev": "dumi dev",
-    "build": "cross-env GITHUB=1 dumi build",
-    "build:netlify": "dumi build",
-    "build:qn": "cross-env USEQN=1 dumi build",
-    "deploy": "yarn build && gh-pages -d dist",
-    "deploy:qt": "yarn deploy && yarn build:qn",
+    "deploy:netlify": "cross-env DEPLOY_ROOT=1 dumi build",
+    "deploy:qn": "cross-env UMI_ENV=qn dumi build",
+    "deploy:github": "dumi build && gh-pages -d y-blog",
+    "deploy:git-qn": "yarn deploy:qn && gh-pages -d y-blog",
     "prettier": "prettier --write \"**/*.{js,jsx,tsx,ts,less,md,json}\"",
     "postinstall":"patch-package"
   },

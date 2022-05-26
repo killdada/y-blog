@@ -12,6 +12,14 @@
 
 文档的书写等参考 dumi
 
+## 常用命令
+
+- `yarn start` | `yarn dev` 文档启动
+- `deploy:netlify` netlify cli 里面执行的发布命令
+- `deploy:qn` 七牛云的发布命令
+- `deploy:github` github pages 的发布命令
+- `deploy:git-qn` 七牛云、github pages 的发布命令
+
 ## 文档部署
 
 目前部署完以后有三个访问地址
@@ -24,7 +32,7 @@
 
 文档部署参考 [GitHub Pages](https://d.umijs.org/zh-CN/guide/faq#%E9%83%A8%E7%BD%B2%E5%88%B0github-pages)
 
-`yarn deploy` 把文档更新到 github pages
+`yarn deploy:github` 把文档更新到 github pages
 
 ### 2：github 网络问题
 
@@ -32,11 +40,11 @@
 
 [netlify 参考文档](https://juejin.cn/post/6844904100329422861)
 
-代码提交到 master 分支自动触发远程的 netlify cli 命令，命令里面会执行 `yarn build:netlify` 的构建
+代码提交到 master 分支自动触发远程的 netlify cli 命令，命令里面会执行 `yarn deploy:netlify` 的构建
 
 ### 3：直接把整个发布后的目录上传到七牛云
 
-`yarn build:qn`
+`yarn deploy:qn`
 
 基于 [qiniu-webpack-plugin](https://github.com/zzetao/qiniu-webpack-plugin)
 
@@ -48,9 +56,7 @@
 
 > 七牛云注意防盗链、还有告警配置等。具体参考官方说明文档
 
-> 同时需要发布 githubpages、七牛云 `yarn deploy:qt`
-
-# 参考
+## 参考
 
 汇总参考文档
 
@@ -63,6 +69,6 @@
 - [patch-package](https://www.npmjs.com/package/patch-package)
 - [patch-package 补丁](https://juejin.cn/post/6962554654643191815)
 
-# License
+## License
 
 Copyright © 2022, yen. Released under the MIT License.
