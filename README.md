@@ -1,8 +1,4 @@
-# yen blog
-
-基于[dumi](https://d.umijs.org/zh-CN)生成的个人博客站点
-
-## 文档本地开发
+# 文档本地开发
 
 `yarn`
 
@@ -12,7 +8,7 @@
 
 文档的书写等参考 dumi
 
-## 常用命令
+# 常用命令
 
 - `yarn start` | `yarn dev` 文档启动
 - `deploy:netlify` netlify cli 里面执行的发布命令
@@ -20,21 +16,22 @@
 - `deploy:github` github pages 的发布命令
 - `deploy:git-qn` 七牛云、github pages 的发布命令
 
-## 文档部署
+# 文档部署
 
-目前部署完以后有三个访问地址
+目前部署完以后有四个访问地址
 
 - [github page](https://killdada.github.io/y-blog/)
 - [netlify](https://yenblog.netlify.app/)
 - [qiniu](http://qiniu.yenmysoft.com.cn/y-blog/)
+- [vercel](https://www.yenmysoft.com.cn/)
 
-### 1：github-pages
+## 1：github-pages
 
 文档部署参考 [GitHub Pages](https://d.umijs.org/zh-CN/guide/faq#%E9%83%A8%E7%BD%B2%E5%88%B0github-pages)
 
 `yarn deploy:github` 把文档更新到 github pages
 
-### 2：github 网络问题
+## 2：github 网络问题
 
 基于[netlify](https://www.netlify.com/)
 
@@ -42,7 +39,7 @@
 
 代码提交到 master 分支自动触发远程的 netlify cli 命令，命令里面会执行 `yarn deploy:netlify` 的构建
 
-### 3：直接把整个发布后的目录上传到七牛云
+## 3：直接把整个发布后的目录上传到七牛云
 
 `yarn deploy:qn`
 
@@ -56,7 +53,11 @@
 
 > 七牛云注意防盗链、还有告警配置等。具体参考官方说明文档
 
-## 参考
+## 4: vercel
+
+基本配置操作跟 netlify 差不多，[官网](https://vercel.com/)
+
+# 参考
 
 汇总参考文档
 
@@ -68,7 +69,10 @@
 - [七牛云 webpack 插件](https://github.com/zzetao/qiniu-webpack-plugin)
 - [patch-package](https://www.npmjs.com/package/patch-package)
 - [patch-package 补丁](https://juejin.cn/post/6962554654643191815)
+- [vercel](https://vercel.com/)
 
-## License
+# License
 
 Copyright © 2022, yen. Released under the MIT License.
+
+![图 1](http://qiniu.yenmysoft.com.cn/y-blog-images//e1aeba16cabad62582f8f35334e1300d78ee6eee2535ce745e884a5224e88c9c.png)
