@@ -8,6 +8,12 @@ let publicPath = '/y-blog/';
 export default defineConfig({
   title: ' ',
   hash: true,
+  metas: [
+    {
+      'http-equiv': 'Content-Security-Policy',
+      content: 'upgrade-insecure-requests',
+    },
+  ],
   favicon: 'http://qiniu.yenmysoft.com.cn/y-blog-images/yen.ico',
   logo: 'http://qiniu.yenmysoft.com.cn/y-blog-images/yenlogo.png',
   mode: 'site',
