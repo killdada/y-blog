@@ -74,5 +74,3 @@
 # License
 
 Copyright © 2022, yen. Released under the MIT License.
-
-![图 2](//qiniu.yenmysoft.com.cn/y-blog-images//011ced9a563259d1ae915bfb04aef66fa0d852a1e04b488f6ba34ef193d5792a.png)
