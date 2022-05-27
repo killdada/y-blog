@@ -8,14 +8,14 @@ let publicPath = '/y-blog/';
 export default defineConfig({
   title: ' ',
   hash: true,
+  favicon: '/yen.ico',
+  logo: '/yenlogo.png',
   metas: [
     {
-      'http-equiv': 'Content-Security-Policy',
-      content: 'upgrade-insecure-requests',
+      name: 'referrer',
+      content: 'no-referrer',
     },
   ],
-  favicon: 'http://qiniu.yenmysoft.com.cn/y-blog-images/yen.ico',
-  logo: 'http://qiniu.yenmysoft.com.cn/y-blog-images/yenlogo.png',
   mode: 'site',
   // 七牛云输出的目录更改成y-blog，方便上传到七牛云对应的目录
   outputPath: 'y-blog',

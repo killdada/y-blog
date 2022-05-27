@@ -2,7 +2,7 @@
   "private": true,
   "name": "dumi-app",
   "scripts": {
-    "start": "cross-env DEPLOY_ROOT=0 dumi dev",
+    "start": "cross-env DEPLOY_ROOT=1 dumi dev",
     "dev": "yarn start",
     "deploy:netlify": "cross-env DEPLOY_ROOT=1 dumi build",
     "deploy:qn": "cross-env UMI_ENV=qn dumi build",
