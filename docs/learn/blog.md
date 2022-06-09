@@ -1,8 +1,8 @@
 ---
 nav:
   path: /learn
-  title: 技术积累
+  title: 生活
   order: 3
 ---
 
-# yen
+## 技术博客

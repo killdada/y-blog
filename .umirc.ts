@@ -6,7 +6,7 @@ const isDeployRoot = process.env.DEPLOY_ROOT === '1';
 let publicPath = '/y-blog/';
 
 export default defineConfig({
-  title: ' ',
+  title: 'blog',
   hash: true,
   favicon: '/yen.ico',
   logo: '/yenlogo.png',
